@@ -1,4 +1,4 @@
-package com.vivinte.dictandroid;
+package com.vivinte.dictandroid.models;
 
 import org.json.JSONArray;
 import org.json.JSONException;

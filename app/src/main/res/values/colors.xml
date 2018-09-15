@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="background_grey">#e3e3e3</color>
+    <color name="my_green_color">#4cd964</color>
+    <color name="my_red_color">#e27280</color>
+    <color name="my_red_color2">#ff3b30</color>
+    <color name="my_blue_color">#5ac8fa</color>
+    <color name="my_blue_color2">#007aff</color>
+    <color name="my_yellow_color">#facc00</color>
+
+
+    <color name="colorPrimary">#5EB2F6</color>
+    <color name="colorPrimaryDark">#5EB2F6</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="whiteColor">#FFFFFF</color>
+    <color name="blackColor">#000000</color>
+    <color name="greyColor">#DEDEDE</color>
+    <color name="facebookColor">#2F6CED</color>
+    <color name="greenColor">#19CB69</color>
+    <color name="dividerColor">#E4E8EB</color>
+    <color name="lightColor">#C9CCCD</color>
+    <color name="bgColor">#E4E8EB</color>
 </resources>

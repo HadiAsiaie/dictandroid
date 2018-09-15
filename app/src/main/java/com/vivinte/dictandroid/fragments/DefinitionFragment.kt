@@ -1,4 +1,4 @@
-package com.vivinte.dictandroid
+package com.vivinte.dictandroid.fragments
 
 import android.content.Context
 import android.net.Uri
@@ -9,6 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.vivinte.dictandroid.R
+import com.vivinte.dictandroid.models.DBUtils
+import com.vivinte.dictandroid.models.SearchItem
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,6 +35,7 @@ class DefinitionFragment : Fragment() {
     private var from: String? = null
     private var to: String? = null
     private var listener: OnFragmentInteractionListener? = null
+    var searchItem:SearchItem?=null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +43,6 @@ class DefinitionFragment : Fragment() {
             text = it.getString(ARG_TEXT)
             from = it.getString(ARG_FROM)
             to = it.getString(ARG_TO)
-
         }
 
 
@@ -47,16 +50,24 @@ class DefinitionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val textView=view.findViewById<TextView>(R.id.definitionTextView)
-        if (text!=null){
-            Log.d("DefinitionFragment","param is: "+text!!)
+
+
+        val translation:String;
+        if (searchItem != null){
+            translation=DBUtils.getOneTranslation(searchItem!!.id)
         }
         else{
-            text="null"
-            Log.d("DefinitionFragment","param is: null")
-        }
-        text="${from}_$text"
-        val translation=DBUtils.getOneTranslation(text!!)
+            if (text!=null){
+                Log.d("DefinitionFragment","param is: "+text!!)
+            }
+            else{
+                text="null"
+                Log.d("DefinitionFragment","param is: null")
+            }
+            text="${from}_$text"
 
+            translation=DBUtils.getOneTranslation(text!!)
+        }
         textView.text=translation
 
     }

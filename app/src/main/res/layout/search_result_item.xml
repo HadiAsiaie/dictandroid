@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="this is some text "
+        android:textAlignment="viewStart"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        app:layout_constraintBaseline_toBaselineOf="@+id/speakerButton"
+        app:layout_constraintEnd_toStartOf="@+id/speakerButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/speakerButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/speaker_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/translationTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:lines="1"
+        android:singleLine="true"
+        android:text="this is translation "
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/my_blue_color2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/starButton"
+        app:layout_constraintEnd_toStartOf="@+id/starButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/starButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/star_icon"
+        app:layout_constraintEnd_toEndOf="@+id/speakerButton"
+        app:layout_constraintTop_toBottomOf="@+id/speakerButton" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/lightColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/starButton" />
+
+</android.support.constraint.ConstraintLayout>

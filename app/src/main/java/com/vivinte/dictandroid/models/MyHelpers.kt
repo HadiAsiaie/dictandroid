@@ -1,4 +1,4 @@
-package com.vivinte.dictandroid
+package com.vivinte.dictandroid.models
 
 import android.content.Context
 import android.media.MediaPlayer
@@ -6,18 +6,15 @@ import android.util.Log
 import com.vivinte.dictandroid.BuildConfig.DEBUG
 import android.content.ContentResolver
 import android.net.Uri
-import android.content.res.AssetFileDescriptor
 import android.os.AsyncTask
-import android.os.Build
 import android.os.Handler
 import android.os.Looper
-import java.util.*
 
 object MediaPlayerHolder{
     private var mediaPlayer:MediaPlayer?=null;
     fun getAppMediaPlayer():MediaPlayer{
-        if (mediaPlayer==null){
-            mediaPlayer=MediaPlayer()
+        if (mediaPlayer ==null){
+            mediaPlayer =MediaPlayer()
             return mediaPlayer!!
         }
         else{
@@ -41,7 +38,7 @@ fun getFileList() : MutableList<String> {
     return list
 }
 fun getProfilePicturesUrlList() : MutableList<String> {
-    val list=getFileList()
+    val list= getFileList()
     val urls:MutableList<String> = mutableListOf()
     for (av in list) {
         val url="/profile_pictures/base/"+av
@@ -91,7 +88,7 @@ fun playSound(context: Context,file:Int,completionHandler:(()->Unit)?=null){
             return@setOnErrorListener false
 
         }
-        mediaPlayer.setDataSource(context, resourceToUri(context,file))
+        mediaPlayer.setDataSource(context, resourceToUri(context, file))
 
 
         mediaPlayer.prepareAsync()
