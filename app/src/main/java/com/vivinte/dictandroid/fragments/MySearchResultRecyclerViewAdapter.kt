@@ -10,6 +10,7 @@ import com.vivinte.dictandroid.R
 import com.vivinte.dictandroid.fragments.SearchResultFragment.OnListFragmentInteractionListener
 import com.vivinte.dictandroid.models.DBUtils
 import com.vivinte.dictandroid.models.SearchItem
+import com.vivinte.dictandroid.models.haveSound
 import kotlinx.android.synthetic.main.search_result_item.view.*
 
 
@@ -43,7 +44,15 @@ class MySearchResultRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
         holder.mView.text.text=item.text
-        holder.mView.translationTextView.text=DBUtils.getOneTranslation(mValues[position].id)
+        holder.mView.translationTextView.text=DBUtils.getOneTranslation(item.id)
+        holder.mView.speakerButton.isEnabled=haveSound(item.from)
+        if (DBUtils.isStared(item.text,item.from,item.to)){
+            holder.mView.starButton.setBackgroundResource(android.R.drawable.btn_star_big_on)
+        }
+        else{
+            holder.mView.starButton.setBackgroundResource(android.R.drawable.btn_star_big_off)
+        }
+
         //holder.mIdView.text = item.id.toString()
         //holder.mContentView.text = item.text.toString()
 

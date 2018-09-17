@@ -14,8 +14,8 @@ import com.vivinte.dictandroid.R
 
 import com.vivinte.dictandroid.fragments.dummy.DummyContent
 import com.vivinte.dictandroid.fragments.dummy.DummyContent.DummyItem
+import com.vivinte.dictandroid.models.DBUtils
 import com.vivinte.dictandroid.models.SearchItem
-import com.vivinte.dictandroid.models.getSomeItems
 
 /**
  * A fragment representing a list of Items.
@@ -27,8 +27,9 @@ class SearchResultFragment : Fragment() {
     // TODO: Customize parameters
     private var columnCount = 1
 
+    var text:String="";
     private var listener: OnListFragmentInteractionListener? = null
-    lateinit var searchResultAdapter:MySearchResultRecyclerViewAdapter
+    private lateinit var searchResultAdapter:MySearchResultRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,10 +49,15 @@ class SearchResultFragment : Fragment() {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
             }
-            searchResultAdapter = MySearchResultRecyclerViewAdapter(getSomeItems(), listener)
+            searchResultAdapter = MySearchResultRecyclerViewAdapter(DBUtils.getSearchResult(text), listener)
             adapter=searchResultAdapter
         }
         return view
+    }
+    fun updateYourSelf(text:String){
+        this.text=text;
+        searchResultAdapter.mValues= DBUtils.getSearchResult(text)
+        searchResultAdapter.notifyDataSetChanged()
     }
     fun update(){
         Log.d("SearchResultFragment","updating")
@@ -84,7 +90,7 @@ class SearchResultFragment : Fragment() {
      */
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: SearchItem?)
+        fun onListFragmentInteraction(item: SearchItem)
     }
 
     companion object {

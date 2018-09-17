@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.vivinte.dictandroid.R
+import com.vivinte.dictandroid.activities.MainActivity
 import com.vivinte.dictandroid.models.DBUtils
 import com.vivinte.dictandroid.models.SearchItem
 
@@ -97,6 +98,13 @@ class DefinitionFragment : Fragment() {
         listener = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        val activity=getActivity() as MainActivity
+        activity.editTextView.setText(searchItem!!.text,TextView.BufferType.EDITABLE)
+
+
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

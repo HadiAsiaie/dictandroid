@@ -90,7 +90,6 @@ object DBUtils{
         translation= StringUtils.decrypt(translation!!)
         val json= JSONObject(translation)
         val map= MyJavaUtils.jsonToMap(json)
-        Log.d("DBUtils",translation)
         val res=map["m"] as String
         return res
 
@@ -109,7 +108,6 @@ object DBUtils{
         translation= StringUtils.decrypt(translation!!)
         val json= JSONObject(translation)
         val map= MyJavaUtils.jsonToMap(json)
-        Log.d("DBUtils",translation)
         val res=map["m"] as String
         return res
     }
@@ -259,7 +257,8 @@ object DBUtils{
             }
         }
         return res
-
-
+    }
+    fun isStared(text:String,from:String,to:String):Boolean{
+        return true
     }
 }

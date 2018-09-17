@@ -26,7 +26,8 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/speaker_icon"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/speaker_icon_with_state"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,17 +52,22 @@
         android:id="@+id/starButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/star_icon"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/btn_star_big_on"
+        android:enabled="true"
         app:layout_constraintEnd_toEndOf="@+id/speakerButton"
-        app:layout_constraintTop_toBottomOf="@+id/speakerButton" />
+        app:layout_constraintTop_toBottomOf="@+id/speakerButton"
+        app:layout_constraintBottom_toTopOf="@id/view"
+        />
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="1dp"
         android:background="@color/lightColor"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/starButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
