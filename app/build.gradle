@@ -14,6 +14,18 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    flavorDimensions "dicts"
+    productFlavors {
+        solver {
+            dimension "dicts"
+            applicationId "com.vivinte.wordsolver"
+        }
+        persian {
+            dimension "dicts"
+            applicationId "com.vivinte.dictandroid"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
