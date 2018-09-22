@@ -94,6 +94,22 @@ object DBUtils{
         return res
 
     }
+    fun getJsonTranslation(ind:Int):HashMap<String,Any>{
+        val selection= "id = ?"
+        val selectionArgs= arrayOf(ind.toString())
+        val cursor= db.query("words",null,selection,selectionArgs,null,null,null)
+        var translation:String?=null
+        with(cursor) {
+            while (moveToNext()) {
+                translation=getString(getColumnIndexOrThrow("translation"))
+            }
+        }
+        cursor.close()
+        translation= StringUtils.decrypt(translation!!)
+        val json= JSONObject(translation)
+        val map= MyJavaUtils.jsonToMap(json)
+        return map;
+    }
     fun getOneTranslation(word:String):String{
         val selection= "word = ?"
         val selectionArgs= arrayOf(word)
@@ -164,6 +180,24 @@ object DBUtils{
             else
                 return ind1;
         }
+    }
+    fun canBeEnglishWord(_word:String):Boolean{
+        val word="en_${_word.toLowerCase()}"
+        return getIndFromWord(word)!=-1
+    }
+    fun canBeRealEnglishWord(_word:String):Boolean{
+        val word="en_${_word.toLowerCase()}"
+        val ind=getIndFromWord(word)
+        if (ind==-1){
+            return false;
+        }
+        val t=getOneTranslation(ind)
+        if (t==_word){
+            return false
+        }
+        val all= getJsonTranslation(ind);
+        val def=all["d"]
+        return def!=null
     }
     fun findStartEndIndex(searchedString: String):StarEndPair{
         var low = -1
