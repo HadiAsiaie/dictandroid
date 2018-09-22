@@ -16,6 +16,7 @@ object DBUtils{
     fun createDB(context: Context){
         dbManager = com.vivinte.dictandroid.models.DBManager(context)
         db = dbManager.readableDatabase
+        //todo reset total words if the app version changes!. this could create bugs now
         getTotalWords();
     }
     fun getTotalWords():Int{
