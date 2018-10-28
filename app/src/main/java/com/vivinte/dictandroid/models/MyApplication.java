@@ -10,6 +10,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         MyApplication.context = getApplicationContext();
+        DBUtils.INSTANCE.createDB(context);
     }
 
     public static Context getAppContext() {

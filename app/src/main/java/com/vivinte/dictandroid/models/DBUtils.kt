@@ -13,11 +13,15 @@ object DBUtils{
     lateinit var dbManager: DBManager;
     val TAG="DBUtils"
     var totalNumberOfWords=0;
+
     fun createDB(context: Context){
+        myAssert(! ::dbManager.isInitialized)
+        Log.d("DBUtils","creating db")
         dbManager = com.vivinte.dictandroid.models.DBManager(context)
         db = dbManager.readableDatabase
         //todo reset total words if the app version changes!. this could create bugs now
         getTotalWords();
+
     }
     fun getTotalWords():Int{
         if (totalNumberOfWords==0){
@@ -292,6 +296,19 @@ object DBUtils{
             }
         }
         return res
+    }
+    fun getMeaningArray(ind:Int):MutableList<MutableList<String>>{
+        val maxNeed=20;
+        val map= getJsonTranslation(ind = ind)
+        val array=map["ms"] as List<Any>
+        val res= MutableList(array.size){
+            val p=array[it] as List<Any>
+            val what=p[0] as String
+            val cur= mutableListOf(what)
+            cur.addAll(p[1] as List<String>)
+            cur
+        }
+        return res;
     }
     fun isStared(text:String,from:String,to:String):Boolean{
         return true

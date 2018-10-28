@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), DefinitionFragment.OnFragmentInteracti
     lateinit var textView: TextView;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DBUtils.createDB(this)
+        //DBUtils.createDB(this)
         setContentView(R.layout.activity_main)
         editTextView=editText
         textView=textViewMain
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity(), DefinitionFragment.OnFragmentInteracti
         searchResultFragment= SearchResultFragment.newInstance(1)
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.search_fragment_container,searchResultFragment)
+        fragmentTransaction.replace(R.id.search_fragment_container,searchResultFragment!!)
         //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit()
 
