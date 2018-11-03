@@ -20,4 +20,8 @@
     <color name="dividerColor">#E4E8EB</color>
     <color name="lightColor">#C9CCCD</color>
     <color name="bgColor">#E4E8EB</color>
+    <color name="blackTextColor">#dd000000</color>
+    <color name="myTextColor">#de000000</color>
+    <color name="mySecondaryTextColor">#78000000</color>
+    <color name="myThirdTextColor">#42000000</color>
 </resources>
