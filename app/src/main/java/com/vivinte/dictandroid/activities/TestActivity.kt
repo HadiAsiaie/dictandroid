@@ -1,10 +1,16 @@
 package com.vivinte.dictandroid.activities
 
 
+import android.arch.persistence.db.SupportSQLiteDatabase
+import android.arch.persistence.room.Room
+import android.arch.persistence.room.RoomDatabase
 import android.graphics.Color
 import android.graphics.Typeface.BOLD
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.support.v4.content.res.ResourcesCompat
 import android.text.Layout
 import android.text.Spannable
@@ -16,9 +22,7 @@ import kotlinx.android.synthetic.main.activity_test.*
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
+
 import com.vivinte.dictandroid.models.*
 
 
@@ -39,13 +43,12 @@ class TestActivity : AppCompatActivity() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onOpen(db)
                 Log.d(localClassName,"db is opened");
-                addData()
-
+                //addData()
             }
 
         }
-        db = Room.databaseBuilder(applicationContext,
-                AppDatabase::class.java, "word_database").build()
+        db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "word_database").addCallback(sRoomDatabaseCallback).build()
+        addData()
 
 
 
@@ -90,8 +93,14 @@ class TestActivity : AppCompatActivity() {
 
     }
     fun addData(){
-        val db=this.db!!;
-        db.userDao().insert(Word("Hi"))
+        val mainHandler = Handler(Looper.getMainLooper())
+        AsyncTask.execute {
+            val db=this.db!!;
+            db.userDao().insert(Word("p7"))
+            val cnt=db.userDao().allWords
+            Log.d(localClassName,"cnt of words is ${cnt.size}")
+        }
+
 
     }
     fun getCompleteTranslation(text:String,from:String,to:String):SpannableStringBuilder{
